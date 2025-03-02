@@ -1,0 +1,46 @@
+# next
+bunx create next-app slack
+
+# shadcn
+bunx --bun shadcn@latest init
+bunx --bun shadcn@latest add button card input separator sonner tooltip resizable popover dialog avatar dropdown-menu
+
+# react icons
+bun add react-icons
+
+# convex
+bun add convex
+bunx convex dev
+
+# convex auth
+bun add @convex-dev/auth @auth/core@0.37.0
+bunx @convex-dev/auth
+
+**** OAuth 등으로 convex db 변경 시 마다 'bunx convex dev' 꼭 해줘야함 ****
+
+# OAuth
+github: setting -> Developer settings -> OAuth Apps -> new OAuth app -> Authorization callback URL
+  Homepage URL: convex -> Project -> settings -> url & deploy key -> show development credentials -> HTTP Action URL
+    ex) https://amiable-puma-5173.convex.site/api/auth/callback/github
+  bunx convex env set AUTH_GITHUB_ID Ov23liBSXFWbJ
+  bunx convex env set AUTH_GITHUB_SECRET 795bd5d0350417ebc520936e
+google: google cloud -> select Project -> API 및 서비스 -> OAuth 동의화면
+
+# jotai
+bun add jotai
+
+# react-verification-input
+bun add react-verification-input
+
+# quill
+bun add quill
+
+# emoji
+bun add @emoji-mart/data
+bun add @emoji-mart/react
+
+# date-fns
+bun add date-fns
+
+# nuqs
+bun add nuqs
