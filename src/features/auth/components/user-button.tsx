@@ -5,8 +5,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { userCurrentUser } from '../api/use-current-user';
@@ -27,7 +25,7 @@ const UserButton = () => {
     return null;
   }
 
-  const { image, name, email } = data;
+  const { image, name } = data;
 
   // image 없으면 이름 첫 글짜 대문자로 대시 사용
   const avatarFallback = name?.charAt(0).toUpperCase();

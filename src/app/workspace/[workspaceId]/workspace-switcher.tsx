@@ -3,21 +3,19 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace';
 import { useGetWorkspaces } from '@/features/workspaces/api/use-get-workspaces';
 import { useCreateWorkspaceModal } from '@/features/workspaces/store/use-create-workspace-modal';
 import { useWorkspaceId } from '@/hooks/use-workspace-id';
-import { Loader, Plus, PlusIcon } from 'lucide-react';
+import { Loader, Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 const WorkspaceSwitcher = () => {
   const router = useRouter();
   const workspaceId = useWorkspaceId();
-  const [_open, setOpen] = useCreateWorkspaceModal();
+  const [, setOpen] = useCreateWorkspaceModal();
 
   const { data: workspaces, isLoading: workspacesLoading } = useGetWorkspaces();
   const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({
@@ -33,7 +31,7 @@ const WorkspaceSwitcher = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button className="size-9 overflow-hidden bg-[#adadad] hover:bg-[#adadad]/80 text-slate-800 font-semibold text-xl">
-            {workspaceLoading ? (
+            {workspaceLoading || workspacesLoading ? (
               <Loader className="size-5 animate-spin shrink-0" />
             ) : (
               workspace?.name.charAt(0).toUpperCase()

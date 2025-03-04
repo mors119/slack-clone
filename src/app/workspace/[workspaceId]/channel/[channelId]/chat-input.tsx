@@ -86,6 +86,7 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
 
       // editorRef?.current?.setContents([]);
     } catch (error) {
+      console.error(error);
       toast.error('Failed to send message');
     } finally {
       setIsPending(false);
