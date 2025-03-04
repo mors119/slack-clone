@@ -199,7 +199,7 @@ export const getById = query({
     );
 
     const reactionsWithoutMemberIdProperty = dedupedReactions.map(
-      ({ memberId, ...rest }) => rest,
+      ({ ...rest }) => rest,
     );
 
     return {
@@ -296,7 +296,7 @@ export const get = query({
             );
 
             const reactionsWithoutMemberIdProperty = dedupedReactions.map(
-              ({ memberId, ...rest }) => rest,
+              ({ ...rest }) => rest,
             );
 
             return {
