@@ -184,7 +184,10 @@ const Profile = ({ memberId, onClose }: ProfileProps) => {
             <div className="flex items-center gap-2 mt-4">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button className="capitalize w-full" variant="outline">
+                  <Button
+                    disabled={isUpdatingMember}
+                    className="capitalize w-full"
+                    variant="outline">
                     {member.role} <ChevronDown className="size-4 ml-2" />
                   </Button>
                 </DropdownMenuTrigger>
@@ -203,14 +206,22 @@ const Profile = ({ memberId, onClose }: ProfileProps) => {
                   </DropdownMenuRadioGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Button onClick={onRemove} className="w-full" variant="outline">
+              <Button
+                onClick={onRemove}
+                disabled={isRemovingMember}
+                className="w-full"
+                variant="outline">
                 Remove
               </Button>
             </div>
           ) : currentMember?._id === memberId &&
             currentMember.role !== 'admin' ? (
             <div className="mt-4">
-              <Button onClick={onLeave} className="w-full" variant="outline">
+              <Button
+                onClick={onLeave}
+                disabled={isRemovingMember}
+                className="w-full"
+                variant="outline">
                 Leave
               </Button>
             </div>

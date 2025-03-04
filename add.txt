@@ -45,3 +45,12 @@ bun add date-fns
 
 # nuqs
 bun add nuqs
+
+
+----------deploy----------
+# convex (convex page -> Using Convex with Vercel)
+( vercel page -> build and Output Settings -> Build Command )
+bunx convex deploy --cmd 'bun run build'
+( vercel -> Environment Variables )
+CONVEX_DEPLOY_KEY
+prod:brilliant-aardvark-490|eyJ2MiI6ImVhNDYwYzY5Y2NjYjRjYzNhMmNjNWRmODE3ZGEwYTEyIn0=

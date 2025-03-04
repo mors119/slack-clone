@@ -10,7 +10,6 @@ import { Button } from '@/components/ui/button';
 
 import { useCreateWorkspaceModal } from '../store/use-create-workspace-modal';
 import { useCreateWorkspace } from '../api/use-create-workspace';
-import { Router } from 'next/router';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
