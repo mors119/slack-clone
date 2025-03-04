@@ -3,7 +3,7 @@ bunx create next-app slack
 
 # shadcn
 bunx --bun shadcn@latest init
-bunx --bun shadcn@latest add button card input separator sonner tooltip resizable popover dialog avatar dropdown-menu
+bunx --bun shadcn@latest add button card input separator sonner tooltip resizable command popover dialog avatar dropdown-menu
 
 # react icons
 bun add react-icons
@@ -38,6 +38,7 @@ bun add quill
 # emoji
 bun add @emoji-mart/data
 bun add @emoji-mart/react
+bun add emoji-picker-react
 
 # date-fns
 bun add date-fns
