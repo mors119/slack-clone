@@ -16,6 +16,7 @@ import { useRemoveMessage } from '@/features/messages/api/use-remove-message';
 import { useConfirm } from '@/hooks/use-confirm';
 import { useToggleReactions } from '@/features/reactions/api/use-toggle-reactions';
 import { usePanel } from '@/hooks/use-panel';
+import ThreadBar from './thread-bar';
 
 const Renderer = dynamic(() => import('@/components/renderer'), { ssr: false });
 const Editor = dynamic(() => import('@/components/editor'), { ssr: false });
@@ -46,6 +47,7 @@ interface MessageProps {
   hideThreadButton?: boolean;
   threadCount?: number;
   threadImage?: string;
+  threadName?: string;
   threadTimestamp?: number;
 }
 
@@ -66,6 +68,7 @@ const Message = ({
   hideThreadButton,
   threadCount,
   threadImage,
+  threadName,
   threadTimestamp,
 }: MessageProps) => {
   const [ConfirmDialog, confirm] = useConfirm(
@@ -73,7 +76,7 @@ const Message = ({
     'Are you sure you want to delete this message? This cannot be undone.',
   );
 
-  const { parentMessageId, onOpenMessage, onClose } = usePanel();
+  const { parentMessageId, onOpenMessage, onOpenProfile, onClose } = usePanel();
 
   const { mutate: updateMessage, isPending: isUpdatingMessage } =
     useUpdateMessage();
@@ -81,7 +84,8 @@ const Message = ({
     useRemoveMessage();
   const { mutate: toggleReaction, isPending: isTogglingReaction } =
     useToggleReactions();
-  const isPending = isUpdatingMessage;
+
+  const isPending = isUpdatingMessage || isTogglingReaction;
 
   const handleReaction = (value: string) => {
     toggleReaction(
@@ -168,6 +172,13 @@ const Message = ({
                   </span>
                 ) : null}
                 <Reactions data={reactions} onChange={handleReaction} />
+                <ThreadBar
+                  count={threadCount}
+                  image={threadImage}
+                  timestamp={threadTimestamp}
+                  name={threadName}
+                  onClick={() => onOpenMessage(id)}
+                />
               </div>
             )}
           </div>
@@ -200,7 +211,7 @@ const Message = ({
             'bg-rose-500/50 transform-all scale-y-0 origin-bottom duration-200',
         )}>
         <div className="flex items-start gap-2">
-          <button>
+          <button onClick={() => onOpenProfile(memberId)}>
             <Avatar>
               <AvatarImage src={authorImage} />
               <AvatarFallback>{avatarFallback}</AvatarFallback>
@@ -220,7 +231,7 @@ const Message = ({
             <div className="flex flex-col w-full overflow-hidden">
               <div className="text-sm flex">
                 <button
-                  onClick={() => {}}
+                  onClick={() => onOpenProfile(memberId)}
                   className="font-bold text-primary hover:underline">
                   {authorName}
                 </button>
@@ -237,6 +248,13 @@ const Message = ({
                 <span className="text-xs text-muted-foreground">(edited)</span>
               ) : null}
               <Reactions data={reactions} onChange={handleReaction} />
+              <ThreadBar
+                count={threadCount}
+                image={threadImage}
+                timestamp={threadTimestamp}
+                name={threadName}
+                onClick={() => onOpenMessage(id)}
+              />
             </div>
           )}
         </div>
