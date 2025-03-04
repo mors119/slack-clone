@@ -15,11 +15,11 @@ import { Loader } from 'lucide-react';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 
-interface JoinPageProps {
-  params: {
-    workspaceId: string;
-  };
-}
+// interface JoinPageProps {
+//   params: {
+//     workspaceId: string;
+//   };
+// }
 
 const JoinPage = () => {
   const router = useRouter();
