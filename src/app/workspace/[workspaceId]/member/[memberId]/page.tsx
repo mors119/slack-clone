@@ -8,7 +8,6 @@ import { useWorkspaceId } from '@/hooks/use-workspace-id';
 import { toast } from 'sonner';
 
 import { Loader, TriangleAlert } from 'lucide-react';
-import { Doc } from '@convex-dev/auth/server';
 import { Id } from '../../../../../../convex/_generated/dataModel';
 import Conversation from './conversation';
 
